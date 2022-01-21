@@ -1,42 +1,41 @@
+
+# Ark
 # 诺兰方舟
 
 
 ## 注意 注意注意
 
-    个人学习项目 请勿使用
+防止泛滥没有许可 用不了 许可免费
 
 
+## Windows安装教程
 
 
+# 1安装ASP.NET Core Runtime 5.0.12
 
-##  Windows 安装教程
-
-
-#  1安装ASP.NET Core Runtime 5.0.12
-
-安装地址：https://dotnet.microsoft.com/download/dotnet/5.0
+安装地址:https://dotnet.microsoft.com/download/dotnet/5.0
 下载之后无脑下一步
 
-#  2下载当前项目解压
+# 2下载当前项目源码解压
 
 
-#  3 根据自己的系统将dll复制根目录即可
+# 3根据自己系统将dll复制根目录即可
 
 64位
 
-复制runtimes \w in-x64 \n ative \O penCvSharpExtern.dll到目录根
+复制runtimes\win-x64\native\OpenCvSharpExtern.dll到根目录
 
 32位
 
-复制runtimes \w in-x86 \n ative \O penCvSharpExtern.dll到根目录
+复制runtimes\win-x86\native\OpenCvSharpExtern.dll到根目录
 
-# 启动
+# 启动 
 
-管理员打开CMD CD到文件夹中 输入dotnet NETJDC.dll --urls=http://*:5000
+ 管理员打开CMD CD到源码文件夹中  输入 dotnet NETJDC.dll --urls=http://*:5000
 
-后面是那个端口可以自己改
+ 后面那个是端口可以自己改
 
-##  docker安装教程
+## docker安装教程
 
 
 
@@ -65,7 +64,7 @@ yum install wget unzip -y
 4创建一个目录放配置
 
 ```
-cd /root/Ark
+ cd /root/Ark
 ```
 ```
 mkdir -p  Config && cd Config
@@ -77,14 +76,12 @@ mkdir -p  Config && cd Config
 
 ```
 {
-///浏览器最多几个网页
+  ///浏览器最多几个网页
   "MaxTab": "4",
   //网站标题
-  "Title": "Ark",
+  "Title": "NolanJDCloud",
   //回收时间分钟 不填默认3分钟
   "Closetime": "5",
-  //不要修改
-  "Captchaurl": "http://127.0.0.1:5000",
   //网站公告
   "Announcement": "为提高账户的安全性，请关闭免密支付。",
   //Proxy 支持不带密码的socks5 以及http 
@@ -98,7 +95,7 @@ mkdir -p  Config && cd Config
   ///开启打印等待日志卡短信验证登陆 可开启 拿到日志群里回复 默认不要填写
   "Debug": "",
   ///自动滑块次数5次 5次后手动滑块 可设置为0默认手动滑块
-  "AutoCaptchaCount": "5",
+  "AutoCaptchaCount": "0",
   ///XDD PLUS Url  http://IP地址:端口/api/login/smslogin
   "XDDurl": "",
   ///xddToken
@@ -115,10 +112,10 @@ mkdir -p  Config && cd Config
   "WP_APP_TOKEN": "",
   "MainWP_UID": "",
   // ======================================= pushplus 通知设置区域 ===========================================
-  ///Push Plus官方网站：http" //www.pushplus.plus  只有青龙模式有用
+  ///Push Plus官方网站：http" //www.pushplus.plus  只有青龙模式有用
   ///下方填写您的Token，微信扫码登录后一对一推送或一对多推送下面的token，只填" "PUSH_PLUS_TOKEN",
   "PUSH_PLUS_TOKEN": "",
-  //下方填写您的一对多推送的 "群组编码" ，（一对多推送下面->您的群组(如无则新建)->群组编码）
+  //下方填写您的一对多推送的 "群组编码" ，（一对多推送下面->您的群组(如无则新建)->群组编码）
   "PUSH_PLUS_USER": "",
   ///青龙配置  注意对接XDD 对接芝士 设置为"Config":[]
   "Config": [
@@ -139,6 +136,7 @@ mkdir -p  Config && cd Config
       "WP_APP_TOKEN": ""
     }
   ]
+
 }
 ```
 
@@ -151,9 +149,9 @@ cd /root/Ark && mkdir -p  .local-chromium/Linux-884014 && cd .local-chromium/Lin
 7下载 chromium 
 
 ```
-wget https://mirrors.huaweicloud.com/chromium-browser-snapshots/Linux_x64/884014/chrome-
-linux.zip && unzip chrome-linux.zip
+wget https://mirrors.huaweicloud.com/chromium-browser-snapshots/Linux_x64/884014/chrome-linux.zip && unzip chrome-linux.zip
 ```
+
 8删除刚刚下载的压缩包 
 
 ```
@@ -169,36 +167,6 @@ cd  /root/Ark
 
 
 10启动镜像
-## AMD更新
-
-注意 5000端口可以不开外网端口
-sudo docker run   --name ark -p 5701:80 -p 5000:5000 -d  -v  "$(pwd)":/app/Ark \
--v /etc/localtime:/etc/localtime:ro \
--it --privileged=true  nolanhzy/ark:latest
-cd /root/Ark
-```
-注意由于我懒 不想更新镜像 /etc/localtime
-
-
-那么群辉启动docker 就删除掉 -v /etc/localtime:/etc/localtime:ro \
-
-由于有定时任务 需要设置 时区 假设群辉拉的源码在 /volume1/docker/nvjdc 目录
-```
-sudo docker run   --name ark  -p 5701:80 -p 5000:5000 -d  -v  /volume1/docker/Ark:/app/Ark \
--it --privileged=true  nolanhzy/ark:latest
-docker stop ark
-```
-进入容器
-```
-docker exec -it ark bash
-git pull
-```
-修改时间
-```
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-docker start ark
-```
-输入date 查看时区对不对  群辉的docker 日志时间有毛病 我们就不用管docker log
 
 ## AMD更新
 
@@ -267,5 +235,3 @@ nohup dotnet NETJDC.dll --urls=http://*:5701 1>"$(pwd)"/log 2>&1 & #ARM64
 > ***您使用或者复制了本仓库且本人制作的任何脚本，则视为`已接受`此声明，请仔细阅读***
 
 ## 多谢
-
-
