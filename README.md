@@ -167,7 +167,11 @@ cd  /root/Ark
 
 
 10启动镜像
-
+```
+sudo docker run   --name ark -p 5801:80 -p 5000:5000 -d  -v  "$(pwd)":/app/Ark \
+-v /etc/localtime:/etc/localtime:ro \
+-it --privileged=true  nolanhzy/ark:latest
+```
 ## AMD更新
 
 ```
